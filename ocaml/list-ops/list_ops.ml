@@ -1,6 +1,6 @@
 (* let fold init:'acc -> f:('acc -> 'a -> 'acc) -> 'a list -> 'acc *)
-(* The ~init arg has been assigned to acc, hence 'init' is undefined *)
-(* You need to include the ~ in the recursive function call to name individual arguments *)
+(* ~init is used as a named argument *)
+(* You need to include the ~ in the recursive function call to refer to individual arguments *)
 let rec fold ~init:acc ~f lst =
    match lst with
     [] -> acc
