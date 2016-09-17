@@ -14,9 +14,3 @@ let response_for input =
     else if is_upper stripped_input then "Whoa, chill out!"
     else "Whatever."
 ;;
-
-(* empty string -> Fine. Be that way! *)
-(* question ->  Sure. *)
-(* all caps -> Whoa, chill out!  *)
-(* question, ALL CAPS ->  Whoa, chill out! *)
-(* anything else -> Whatever. *)
