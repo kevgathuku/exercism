@@ -19,8 +19,6 @@ val filter : f:('a -> bool) -> 'a list -> 'a list
 
 val fold : init:'acc -> f:('acc -> 'a -> 'acc) -> 'a list -> 'acc
 
-val fold_right : init:'acc -> f:('a -> 'acc -> 'acc) -> 'a list -> 'acc
-
 val append : 'a list -> 'a list -> 'a list
 
 val concat : 'a list list -> 'a list

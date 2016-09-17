@@ -9,40 +9,37 @@ let rec fold ~init:acc ~f lst =
 
 (* Evaluates the list from the last element to the first. *)
 (* Returns elements in the order it received them *)
-let rec fold_right ~init:acc ~f lst =
+(* These are no longer named arguments, but positional arguments *)
+let rec fold_right (acc: 'b) (f: 'a -> 'b -> 'b) (lst: 'a list) : 'b =
     match lst with
     [] -> acc
-    | hd :: tl -> f hd (fold_right ~init:acc ~f tl)
+    | hd :: tl -> f hd (fold_right acc f tl)
 ;;
 
 let length lst =
-    (* match lst with
-    | [] -> 0
-    | _ :: tl -> 1 + length tl *)
     fold ~init:0 ~f:(fun acc _ -> acc + 1) lst
 ;;
 
 let reverse lst =
-    (* The elements are added to a new list in reverse order *)
     (* The first element is added to the end of the list, then the rest follow*)
     fold ~init:[] ~f:(fun acc x -> x :: acc) lst
 ;;
 
 let map ~f lst =
-    (* match lst with
-    | [] -> []
-    | hd :: tl -> let r = f hd in r :: map f tl *)
-    fold_right ~init:[] ~f:(fun x acc -> (f x) :: acc) lst
+    fold_right [] (fun x acc -> (f x) :: acc) lst
 ;;
 
 let filter ~f lst =
-    fold ~init:[] ~f:(fun acc x -> if (f x) then (x :: acc) else acc) (reverse lst)
+    fold_right [] (fun x acc -> if (f x) then (x :: acc) else acc) lst
 ;;
 
 let append lst_a lst_b =
-    fold ~init:lst_b ~f:(fun acc x -> x :: acc) (reverse lst_a)
+    (* Appends elements in list_b to list_a and returns a new list *)
+    (* Starts with list_b elements, then prepends list_a elements, from last to first *)
+    fold_right lst_b (fun x acc -> x :: acc) lst_a
 ;;
 
 let concat lst =
-    fold ~init:[] ~f:(fun acc x -> append acc x) lst
+    (* Merges two lists into one *)
+    fold_right [] (fun x acc -> append x acc) lst
 ;;
