@@ -19,17 +19,17 @@ let reverse lst =
 ;;
 
 let map ~f lst =
-    fold_right [] (fun x acc -> (f x) :: acc) lst
+    fold ~init:[] ~f:(fun acc x -> (f x) :: acc) (reverse lst)
 ;;
 
 let filter ~f lst =
-    fold_right [] (fun x acc -> if (f x) then (x :: acc) else acc) lst
+    fold ~init:[] ~f:(fun acc x -> if (f x) then (x :: acc) else acc) (reverse lst)
 ;;
 
 let append lst_a lst_b =
-    fold_right lst_b (fun x acc -> x :: acc) lst_a
+    fold ~init:lst_b ~f:(fun acc x -> x :: acc) (reverse lst_a)
 ;;
 
 let concat lst =
-    fold_right [] (fun x acc -> append x acc) lst
+    fold ~init:[] ~f:(fun acc x -> append x acc) (reverse lst)
 ;;
