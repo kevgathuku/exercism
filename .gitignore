@@ -22,3 +22,29 @@ _build/
 # oasis generated files
 setup.data
 setup.log
+
+# Created by https://www.gitignore.io/api/clojure
+
+### Clojure ###
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+/lib/
+/classes/
+/target/
+/checkouts/
+.lein-deps-sum
+.lein-repl-history
+.lein-plugins/
+.lein-failures
+.nrepl-port
+
+# Created by https://www.gitignore.io/api/elixir
+
+### Elixir ###
+/_build
+/cover
+/deps
+erl_crash.dump
+*.ez
