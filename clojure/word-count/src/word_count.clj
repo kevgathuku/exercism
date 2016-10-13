@@ -3,4 +3,8 @@
 
 (defn word-count
   ([words]
-   (frequencies (split (lower-case (replace words #"[^a-zA-Z0-9\s]" "")) #"\s+"))))
+   (-> words
+       (replace #"[^a-zA-Z0-9\s]" "")
+       (lower-case)
+       (split #"\s+")
+       (frequencies))))
