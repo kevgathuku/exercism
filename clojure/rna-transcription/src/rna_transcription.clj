@@ -3,9 +3,7 @@
 (def dna-map {\G "C" \C "G" \T "A" \A "U"})
 
 (defn get-rna [char]
-  (if (nil? (dna-map char))
-    (throw (AssertionError. "Invalid Data"))
-    (dna-map char)))
+  (or (dna-map char) (throw (AssertionError. "Invalid Data"))))
 
 (defn to-rna
   "Transcribe A DNA strand to its RNA complement"
