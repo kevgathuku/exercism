@@ -1,5 +1,5 @@
 (ns beer-song
-  (:require [clojure.string :as str :refer [join]]))
+  (:require [clojure.string :refer [join]]))
 
 (defn many [n] (format "%d bottles of beer on the wall, %d bottles of beer.\nTake one down and pass it around, %d bottles of beer on the wall.\n" n n (dec n)))
 
@@ -18,5 +18,4 @@
 (defn sing
   ([start] (sing start 0))
   ([start stop]
-    (let [verses (map verse (range start (dec stop) -1))]
-      (str/replace (reduce (fn [acc, name] (str acc name "\n")) "" verses) #"\n\n$" "\n"))))
+    (join "\n" (map verse (range start (dec stop) -1)))))
