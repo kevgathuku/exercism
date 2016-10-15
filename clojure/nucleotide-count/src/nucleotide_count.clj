@@ -1,5 +1,5 @@
 (ns nucleotide-count
-  (:require [clojure.string :refer [split blank?]]))
+  (:require [clojure.string :refer [blank?]]))
 
 (defn nucleotide-counts
   ([nuc]
@@ -10,6 +10,5 @@
 
 (defn count
   ([symbol nuc]
-   (if (.contains (split "GACT" #"") (str symbol))
-     (get (frequencies nuc) symbol 0)
-     (throw (AssertionError.)))))
+  (assert (contains? #{\A \T \C \G} symbol) "Invalid Character")
+  (get (frequencies nuc) symbol 0)))
