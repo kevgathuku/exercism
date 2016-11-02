@@ -39,6 +39,7 @@ target/
 .lein-plugins/
 .lein-failures
 .nrepl-port
+*.iml
 
 # Created by https://www.gitignore.io/api/elixir
 
