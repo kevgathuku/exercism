@@ -7,10 +7,8 @@ class Hamming
     if first.size != second.size
       raise ArgumentError, "String lengths don't match"
     end
-    count = 0
-    first.chars.zip(second.chars).each do |first, second|
-      count += 1 unless second == first
+    first.chars.zip(second.chars).inject(0) do |count, el|
+      el[0] == el[1]  ? count : count + 1
     end
-    count
   end
 end
