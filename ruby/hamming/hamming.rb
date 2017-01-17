@@ -8,11 +8,8 @@ class Hamming
       raise ArgumentError, "String lengths don't match"
     end
     count = 0
-    first.chars.each_with_index do |char, index|
-      # If the characters are not identical, increment the count
-      unless second[index] == char
-        count += 1
-      end
+    first.chars.zip(second.chars).each do |first, second|
+      count += 1 unless second == first
     end
     count
   end
