@@ -1,13 +1,11 @@
-require 'time'
-
 module BookKeeping
   VERSION = 5
 end
 
 class Gigasecond
-    GIGASECOND_DURATION = 1000000000
+    GIGASECOND = 1_000_000_000
 
-    def self.from(start_time)
-        start_time + GIGASECOND_DURATION
+    def self.from(moment)
+        moment + GIGASECOND
     end
 end
