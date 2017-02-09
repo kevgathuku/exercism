@@ -1,11 +1,6 @@
 object SumOfMultiples {
   def sumOfMultiples(factors: Set[Int], limit: Int): Int = {
-    var sum: Int = 0
-    for (a <- 1 until limit) {
-      if (factors.exists(factor => a % factor == 0)) {
-        sum += a
-      }
-    }
-    sum
+    val l = 1 until limit
+    l.foldLeft(0)((x, y) => if (factors exists (factor => y % factor == 0)) x + y else x)
   }
 }
