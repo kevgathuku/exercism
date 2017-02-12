@@ -1,12 +1,20 @@
 class Bob {
-  def checkUpperCase(input: String) = {
-    input.map(_.toUpper) == input && input.map(_.toLower) != input
+  def yelling(input: String): Boolean = {
+    input.toUpperCase() == input && input.toLowerCase() != input
+  }
+
+  def question(input: String): Boolean = {
+    input.endsWith("?")
+  }
+
+  def silence(input: String): Boolean = {
+    input forall (_.isWhitespace)
   }
 
   def hey(remark: String): String = remark match {
-    case empty if remark forall (_.isWhitespace) => "Fine. Be that way!"
-    case yell if checkUpperCase(remark) => "Whoa, chill out!"
-    case question if remark.endsWith("?") => "Sure."
+    case response if silence(remark) => "Fine. Be that way!"
+    case response if yelling(remark) => "Whoa, chill out!"
+    case response if question(remark) => "Sure."
     case _ => "Whatever."
   }
 }
