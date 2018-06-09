@@ -10,8 +10,8 @@
     (cond
       (= ((vec haystack) low-idx) needle) low-idx
       (= ((vec haystack) mid-idx) needle) mid-idx
-      (= ((vec haystack) high-idx) needle) high-idx
-      )
+      (= ((vec haystack) high-idx) needle) high-idx)
+
     (loop [low low-idx high high-idx]
       (if (> low high)
         (throw (Exception. "not found"))

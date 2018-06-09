@@ -9,13 +9,13 @@
 
 (defn verse
   ([num]
-    (case num
-      0 zero
-      1 one
-      2 two
-      (many num))))
+   (case num
+     0 zero
+     1 one
+     2 two
+     (many num))))
 
 (defn sing
   ([start] (sing start 0))
   ([start stop]
-    (join "\n" (map verse (range start (dec stop) -1)))))
+   (join "\n" (map verse (range start (dec stop) -1)))))
