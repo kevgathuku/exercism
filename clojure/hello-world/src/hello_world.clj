@@ -2,8 +2,7 @@
 
 (defn hello
   "greet someone given their name"
-  ([]
-    "Hello, World!")
+  ([] (hello "World"))
   ([name]
-    (clojure.string/replace "Hello, name!" #"name" name))
+    (str "Hello, " name "!"))
 )
