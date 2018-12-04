@@ -1,6 +1,6 @@
-# Rna Transcription
+# RNA Transcription
 
-Write a program that, given a DNA strand, returns its RNA complement (per RNA transcription).
+Given a DNA strand, return its RNA complement (per RNA transcription).
 
 Both DNA and RNA strands are a sequence of nucleotides.
 
@@ -17,11 +17,9 @@ each nucleotide with its complement:
 * `C` -> `G`
 * `T` -> `A`
 * `A` -> `U`
-
 ## Source
 
-Rosalind [http://rosalind.info/problems/rna](http://rosalind.info/problems/rna)
+Hyperphysics [http://hyperphysics.phy-astr.gsu.edu/hbase/Organic/transcription.html](http://hyperphysics.phy-astr.gsu.edu/hbase/Organic/transcription.html)
 
-## Submitting Incomplete Problems
+## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
-
