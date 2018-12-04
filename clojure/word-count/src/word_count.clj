@@ -1,10 +1,9 @@
 (ns word-count
-  (:require [clojure.string :refer [lower-case replace split]]))
+  (:require [clojure.string :as str]))
 
 (defn word-count
-  ([words]
-   (-> words
-       (replace #"[^a-zA-Z0-9\s]" "")
-       (lower-case)
-       (split #"\s+")
-       (frequencies))))
+  ([text]
+   (->> text
+        (str/lower-case)
+        (re-seq #"\w+")
+        (frequencies))))
