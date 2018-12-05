@@ -6,7 +6,7 @@
   ([num] (num-digits num 0))
   ([num count]
    (if (< num 10) (inc count)
-     (num-digits (/ num 10) (inc count)))))
+     (recur (/ num 10) (inc count)))))
 
 
 (defn own-digits [num]
