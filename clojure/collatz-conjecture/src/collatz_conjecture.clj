@@ -1,13 +1,13 @@
 (ns collatz-conjecture)
 
-(defn compute-collatz [num acc]
-  (cond
-    (= num 1) acc
-    (even? num) (compute-collatz (/ num 2) (inc acc))
-    (odd? num)  (compute-collatz (+ 1 (* num 3)) (inc acc))))
-    
+(defn collatz
+  ([num]
+   {:pre [(pos? num)]}
+   (collatz num 0))
 
-(defn collatz [num]
-  {:pre [(pos? num)]}
-  (compute-collatz num 0))
+  ([num steps]
+   (cond
+     (= num 1) steps
+     (even? num) (compute-collatz (/ num 2) (inc steps))
+     (odd? num)  (compute-collatz (+ 1 (* num 3)) (inc steps)))))
 
