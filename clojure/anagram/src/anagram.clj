@@ -1,12 +1,19 @@
 (ns anagram
-  (:require [clojure.string :refer [lower-case]]))
+  (:require [clojure.string :as str]))
+
 
 (defn equal-frequencies?
   ([first second]
-   (= (frequencies (lower-case first)) (frequencies (lower-case second)))))
+   (= (frequencies (str/lower-case first)) (frequencies (str/lower-case second)))))
+
+
+(defn is-same-word [word candidate]
+  (= (str/lower-case word) (str/lower-case candidate)))
+
 
 (defn anagrams-for
   ([word candidates]
-   (filterv (fn [cand]
-      (and (not (= (lower-case word) (lower-case cand)))
-        (equal-frequencies? word cand))) candidates)))
+   (filterv #(and
+                  (not (is-same-word word %1))
+                  (equal-frequencies? word %1))
+             candidates)))
