@@ -18,8 +18,8 @@
   
 
 (defn armstrong? [num]
-  (let [count (num-digits num)
+  (let [num-count (num-digits num)
         digits (own-digits num)
-        armstrong (reduce + (map (fn [digit] (raise digit count)) digits))]
+        armstrong (reduce + (map (fn [digit] (raise digit num-count)) digits))]
     (= armstrong num)))    
 
