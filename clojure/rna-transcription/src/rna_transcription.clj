@@ -7,4 +7,5 @@
 (defn to-rna
   "Transcribe A DNA strand to its RNA complement"
   ([strand]
-   (reduce (fn [acc, name] (str acc (get-rna name))) "" strand)))
+   (reduce #(str %1 (get-rna %2)) "" strand)))
+
