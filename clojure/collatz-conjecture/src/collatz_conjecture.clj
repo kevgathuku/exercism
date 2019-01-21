@@ -8,6 +8,5 @@
   ([num steps]
    (cond
      (= num 1) steps
-     (even? num) (compute-collatz (/ num 2) (inc steps))
-     (odd? num)  (compute-collatz (+ 1 (* num 3)) (inc steps)))))
-
+     (even? num) (collatz (/ num 2) (inc steps))
+     (odd? num)  (collatz (+ 1 (* num 3)) (inc steps)))))
