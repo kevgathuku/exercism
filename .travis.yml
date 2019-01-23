@@ -1,2 +1,0 @@
-language: clojure
-script: cd clojure && sh runtests.sh
