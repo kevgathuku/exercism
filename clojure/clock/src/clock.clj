@@ -1,5 +1,4 @@
-(ns clock
-  (:require [clojure.string :as string]))
+(ns clock)
 
 
 (defn process-hours [hours]
@@ -15,7 +14,7 @@
 
 
 (defn clock->string [clock-instance]
-  (string/join ":" (map (partial format "%02d") clock-instance)))
+  (format "%02d:%02d" (first clock-instance) (second clock-instance)))
 
 
 (defn clock [hours minutes]
