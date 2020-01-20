@@ -22,6 +22,13 @@ defmodule RnaTranscriptionTest do
   end
 
   # @tag :pending
+  test "raises error for invalid dna string" do
+    assert_raise Norm.MismatchError, fn ->
+      RnaTranscription.to_rna('F')
+    end
+  end
+
+  # @tag :pending
   test "it transcribes all dna nucleotides to rna equivalents" do
     assert RnaTranscription.to_rna('ACGTGGTCTTAA') == 'UGCACCAGAAUU'
   end

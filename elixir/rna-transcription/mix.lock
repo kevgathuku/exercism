@@ -1,0 +1,4 @@
+%{
+  "norm": {:hex, :norm, "0.10.1", "9d9169b625e30fdf666ace885727d3d2b0aa02f0a884f4c0602282a0c10fd0d9", [:mix], [], "hexpm"},
+  "stream_data": {:hex, :stream_data, "0.4.3", "62aafd870caff0849a5057a7ec270fad0eb86889f4d433b937d996de99e3db25", [:mix], [], "hexpm"},
+}
