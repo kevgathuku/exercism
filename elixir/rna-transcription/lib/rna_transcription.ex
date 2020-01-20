@@ -9,26 +9,11 @@ defmodule RnaTranscription do
   """
   @spec to_rna([char]) :: [char]
   def to_rna(dna) do
-    cond do
-      Enum.count(dna) == 1 ->
-        {:ok, value} = Map.fetch(mapping(), to_string(dna))
-
-        value
-        |> to_charlist
-
-      Enum.count(dna) > 1 ->
-        List.to_string(dna)
-        |> String.codepoints()
-        |> Enum.map(fn key ->
-          {:ok, value} = Map.fetch(mapping(), key)
-          value
-        end)
-        |> Enum.join()
-        |> to_charlist
-    end
+    Enum.map(dna, fn x -> mapping(x) end)
   end
 
-  def mapping do
-    %{"G" => "C", "C" => "G", "T" => "A", "A" => "U"}
-  end
+  def mapping(?C), do: ?G
+  def mapping(?G), do: ?C
+  def mapping(?A), do: ?U
+  def mapping(?T), do: ?A
 end
