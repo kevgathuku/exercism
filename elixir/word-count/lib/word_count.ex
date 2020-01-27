@@ -1,5 +1,5 @@
 defmodule WordCount do
-  @regexp ~r/,|:|!|&|@|\$|%|\^|_/
+  @regexp ~r/[^[:alnum:]-]/u
 
   @doc """
   Count the number of words in the sentence.
@@ -12,8 +12,7 @@ defmodule WordCount do
     word_list =
       sentence
       |> String.downcase()
-      |> String.replace(@regexp, " ")
-      |> String.split()
+      |> String.split(@regexp, trim: true)
 
     defaults = Map.new(word_list, fn x -> {x, 0} end)
 
