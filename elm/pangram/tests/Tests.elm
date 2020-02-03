@@ -1,10 +1,8 @@
-port module Main exposing (..)
+module Tests exposing (tests)
 
-import Test.Runner.Node exposing (run)
-import Json.Encode exposing (Value)
-import Test exposing (..)
 import Expect
 import Pangram exposing (isPangram)
+import Test exposing (..)
 
 
 tests : Test
@@ -22,6 +20,10 @@ tests =
             \() ->
                 Expect.equal False
                     (isPangram "a quick movement of the enemy will jeopardize five gunboats")
+        , test "missing character 'z'" <|
+            \() ->
+                Expect.equal False
+                    (isPangram "a quick movement of the enemy will jeopardixe five gunboats")
         , test "another missing character 'x'" <|
             \() ->
                 Expect.equal False
@@ -47,11 +49,3 @@ tests =
                 Expect.equal True
                     (isPangram "Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.")
         ]
-
-
-main : Program Value
-main =
-    run emit tests
-
-
-port emit : ( String, Value ) -> Cmd msg
