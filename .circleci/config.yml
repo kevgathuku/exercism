@@ -3,10 +3,18 @@ jobs: # basic units of work in a run
   build: # runs not using Workflows must have a `build` job as entry point
     working_directory: ~/repo # directory where steps will run
     docker: # run the steps with Docker
-      - image: circleci/clojure:lein-2.8.3 # ...with this image as the primary container; this is where all `steps` will run
+      # Primary container image where all steps run.
+      - image: circleci/clojure:lein-2.8.3
+      # Secondary container image
+      - image: circleci/elixir:1.9.4
     environment: # environment variables for primary container
       LEIN_ROOT: nbd
       JVM_OPTS: -Xmx3200m # limit the maximum heap size to prevent out of memory errors
     steps: # commands that comprise the `build` job
       - checkout # check out source code to working directory
-      - run: cd clojure && sh runtests.sh
+      - run:
+          name: Run Clojure tests
+          command: cd clojure && sh runtests.sh
+      - run:
+          name: Run Elixir tests
+          command: cd elixir && sh runtests.sh
