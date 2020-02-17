@@ -1,10 +1,10 @@
 # Leap
 
-Write a program that will take a year and report if it is a leap year.
+Given a year, report if it is a leap year.
 
 The tricky thing here is that a leap year in the Gregorian calendar occurs:
 
-```plain
+```text
 on every year that is evenly divisible by 4
   except every year that is evenly divisible by 100
     unless the year is also evenly divisible by 400
@@ -12,9 +12,6 @@ on every year that is evenly divisible by 4
 
 For example, 1997 is not a leap year, but 1996 is.  1900 is not a leap
 year, but 2000 is.
-
-If your language provides a method in the standard library that does
-this look-up, pretend it doesn't exist and implement it yourself.
 
 ## Notes
 
@@ -26,34 +23,33 @@ phenomenon, go watch [this youtube video][video].
 
 [video]: http://www.youtube.com/watch?v=xX96xng7sAE
 
-For running the tests provided, you will need `Opam` and `Core`. Consult [opam](https://opam.ocaml.org) website for instuctions on how to install for your OS. Once `opam` is installed open a terminal window and run the following command to install core:
 
-opam install core
+## Getting Started
+1. [Install the Exercism CLI](https://exercism.io/cli-walkthrough).
+
+2. [Install OCaml](https://exercism.io/tracks/ocaml/installation).
+
+3. For library documentation, follow [Useful OCaml resources](https://exercism.io/tracks/ocaml/resources).
 
 ## Running Tests
-
-Because OCaml is a compiled language you need to compile your submission and the test code before you can run the tests. Compile with
-
-```bash
-$ corebuild -quiet test.native
-```
-
-and when successful run the tests by running the `test.native` executable:
-
-```bash
-./test.native
-```
-
-Alternatively just type
+A `Makefile` is provided with a default target to compile your solution and run the tests. At the command line, type:
 
 ```bash
 make
 ```
 
+## Submitting Incomplete Solutions
+It's possible to submit an incomplete solution so you can see how others have completed the exercise.
+
+## Feedback, Issues, Pull Requests
+The [exercism/ocaml](https://github.com/exercism/ocaml) repository on GitHub is
+the home for all of the Ocaml exercises.
+
+If you have feedback about an exercise, or want to help implementing a new
+one, head over there and create an issue or submit a PR. We welcome new
+contributors!
+
 ## Source
 
 JavaRanch Cattle Drive, exercise 3 [http://www.javaranch.com/leap.jsp](http://www.javaranch.com/leap.jsp)
-
-## Submitting Incomplete Problems
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.
 
