@@ -1,10 +1,9 @@
-test: test.native
-	@./test.native
+default: clean test
 
-test.native: *.ml *.mli
-	@corebuild -r -quiet -pkg oUnit -pkg str test.native
+test: 
+	dune runtest
 
 clean:
-	rm -rf _build
+	dune clean
 
 .PHONY: clean
