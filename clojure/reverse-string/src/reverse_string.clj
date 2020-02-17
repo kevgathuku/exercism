@@ -1,6 +1,5 @@
-(ns reverse-string
-  (:require [clojure.string :as str]))
+(ns reverse-string)
 
 
 (defn reverse-string [s]
-  (str/reverse s))
+ (apply str (into '() s)))
