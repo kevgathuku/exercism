@@ -11,7 +11,6 @@ class Complement
   }.freeze
 
   def self.of_dna(strand)
-    # Prefer each_char, which returns an iterator, over chars, which returns an array
     rna = strand.each_char.map { |char| CONVERSION_TABLE[char] }
     # If any of the chars is invalid i.e. returns nil, return an empty string
     rna.all? ? rna.join : ''
