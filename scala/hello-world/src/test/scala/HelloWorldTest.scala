@@ -1,16 +1,9 @@
 import org.scalatest.{Matchers, FunSuite}
 
+/** @version 1.1.0 */
 class HelloWorldTest extends FunSuite with Matchers {
-  test("Without name") {
+
+  test("Say Hi!") {
     HelloWorld.hello() should be ("Hello, World!")
-  }
-
-  test("with name") {
-    HelloWorld.hello("Jane") should be ("Hello, Jane!")
-  }
-
-  test("with umlaut name") {
-    
-    HelloWorld.hello("Jürgen") should be ("Hello, Jürgen!")
   }
 }
