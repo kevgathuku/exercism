@@ -8,7 +8,8 @@ class Squares
   end
 
   def square_of_sum
-    (1..@num).sum ** 2
+    sum = (1..@num).to_a.sum
+    sum * sum
   end
 
   def sum_of_squares
