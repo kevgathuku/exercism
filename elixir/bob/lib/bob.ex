@@ -1,16 +1,16 @@
 defmodule Bob do
   def hey(input) do
     cond do
-      is_upper(input) && is_question(input) && is_alpha(input) ->
+      upper?(input) && question?(input) && alpha?(input) ->
         "Calm down, I know what I'm doing!"
 
-      is_empty(input) ->
+      empty?(input) ->
         "Fine. Be that way!"
 
-      is_upper(input) && is_alpha(input) ->
+      upper?(input) && alpha?(input) ->
         "Whoa, chill out!"
 
-      is_question(input) ->
+      question?(input) ->
         "Sure."
 
       true ->
@@ -18,8 +18,8 @@ defmodule Bob do
     end
   end
 
-  defp is_alpha(input), do: String.match?(input, ~r/[[:alpha:]]/)
-  defp is_empty(input), do: String.trim(input) == ""
-  defp is_question(input), do: input |> String.trim() |> String.last() == "?"
-  defp is_upper(input), do: String.upcase(input) == input
+  defp alpha?(input), do: String.upcase(input) != String.downcase(input)
+  defp empty?(input), do: String.trim(input) == ""
+  defp question?(input), do: input |> String.trim() |> String.last() == "?"
+  defp upper?(input), do: String.upcase(input) == input
 end
