@@ -7,23 +7,9 @@ defmodule Prime do
   def nth(0), do: raise("InvalidNumberError")
 
   def nth(count) do
-    # Set the upper limit to some large number. Hopefully we don't reach it
-    # before finding `count` prime numbers
-    Enum.reduce_while(1..134_217_728, [], fn x, primes ->
-      # Keep accumulating until we get `count` items
-      if Enum.count(primes) < count do
-        if Prime.prime?(x) do
-          {:cont, [x | primes]}
-        else
-          {:cont, primes}
-        end
-      else
-        {:halt, primes}
-      end
-    end)
-    # Get the nth last element, since we built the primes list
-    # in reverse
-    |> Enum.at(-count)
+    Stream.iterate(1, &(&1 + 1))
+    |> Stream.filter(&Prime.prime?(&1))
+    |> Enum.at(count - 1)
   end
 
   def prime?(2), do: true
