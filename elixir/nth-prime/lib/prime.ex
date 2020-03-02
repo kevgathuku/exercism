@@ -7,15 +7,23 @@ defmodule Prime do
   def nth(0), do: raise("InvalidNumberError")
 
   def nth(count) do
-    1..(count * 100)
-    |> Enum.map(fn x ->
-      if prime?(x) do
-        x
+    # Set the upper limit to some large number. Hopefully we don't reach it
+    # before finding `count` prime numbers
+    Enum.reduce_while(1..134_217_728, [], fn x, primes ->
+      # Keep accumulating until we get `count` items
+      if Enum.count(primes) < count do
+        if Prime.prime?(x) do
+          {:cont, [x | primes]}
+        else
+          {:cont, primes}
+        end
+      else
+        {:halt, primes}
       end
     end)
-    |> Enum.reject(&is_nil/1)
-    # convert the count to zero index
-    |> Enum.at(count - 1)
+    # Get the nth last element, since we built the primes list
+    # in reverse
+    |> Enum.at(-count)
   end
 
   def prime?(2), do: true
@@ -28,7 +36,6 @@ defmodule Prime do
 
     3..range_end
     |> Enum.reject(&Integer.is_even(&1))
-    |> Enum.filter(fn x -> rem(num, x) == 0 end)
-    |> Enum.empty?()
+    |> Enum.all?(fn x -> rem(num, x) != 0 end)
   end
 end
