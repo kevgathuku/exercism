@@ -21,7 +21,6 @@ defmodule Prime do
     range_end = :math.sqrt(num) |> round
 
     3..range_end
-    |> Enum.reject(&Integer.is_even(&1))
     |> Enum.all?(fn x -> rem(num, x) != 0 end)
   end
 end
