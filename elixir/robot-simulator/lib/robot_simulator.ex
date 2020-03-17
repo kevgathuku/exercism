@@ -43,42 +43,19 @@ defmodule RobotSimulator do
   defp is_valid?(instructions) do
     valid = String.codepoints("RLA")
 
-    is_valid? =
-      String.codepoints(instructions)
-      |> Enum.all?(fn x -> x in valid end)
+    String.codepoints(instructions)
+    |> Enum.all?(fn x -> x in valid end)
   end
 
-  defp move("L", robot) do
-    cond do
-      robot.direction == :north ->
-        %{robot | direction: :west}
+  defp move("L", robot = %{direction: :north}), do: %{robot | direction: :west}
+  defp move("L", robot = %{direction: :east}), do: %{robot | direction: :north}
+  defp move("L", robot = %{direction: :south}), do: %{robot | direction: :east}
+  defp move("L", robot = %{direction: :west}), do: %{robot | direction: :south}
 
-      robot.direction == :east ->
-        %{robot | direction: :north}
-
-      robot.direction == :south ->
-        %{robot | direction: :east}
-
-      robot.direction == :west ->
-        %{robot | direction: :south}
-    end
-  end
-
-  defp move("R", robot) do
-    cond do
-      robot.direction == :north ->
-        %{robot | direction: :east}
-
-      robot.direction == :east ->
-        %{robot | direction: :south}
-
-      robot.direction == :south ->
-        %{robot | direction: :west}
-
-      robot.direction == :west ->
-        %{robot | direction: :north}
-    end
-  end
+  defp move("R", robot = %{direction: :north}), do: %{robot | direction: :east}
+  defp move("R", robot = %{direction: :east}), do: %{robot | direction: :south}
+  defp move("R", robot = %{direction: :south}), do: %{robot | direction: :west}
+  defp move("R", robot = %{direction: :west}), do: %{robot | direction: :north}
 
   defp move("A", robot) do
     cond do
