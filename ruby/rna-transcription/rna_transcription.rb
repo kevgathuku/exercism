@@ -4,13 +4,13 @@ end
 
 class Complement
   CONVERSION_TABLE = {
-    "G" => "C",
-    "C" => "G",
-    "T" => "A",
-    "A" => "U",
+    'G' => 'C',
+    'C' => 'G',
+    'T' => 'A',
+    'A' => 'U',
   }.freeze
 
   def self.of_dna(strand)
-    strand.each_char.map { |char| CONVERSION_TABLE[char] }.join
+    strand.gsub(/[GCTA]/, CONVERSION_TABLE)
   end
 end
