@@ -34,6 +34,16 @@ jobs: # basic units of work in a run
       - run:
           name: Run Ruby tests
           command: cd ruby && sh runtests.sh
+
+  test_rust:
+    docker: # run the steps with Docker
+      # Primary container image where all steps run.
+      - image: circleci/rust:1.45.2
+    steps: # commands that comprise the `build` job
+      - checkout
+      - run:
+          name: Run Rust tests
+          command: cd rust && sh runtests.sh
 workflows:
   version: 2
   test_exercism:
@@ -41,3 +51,4 @@ workflows:
       - test_clojure
       - test_elixir
       - test_ruby
+      - test_rust
