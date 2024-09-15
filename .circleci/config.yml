@@ -27,7 +27,7 @@ jobs: # basic units of work in a run
   test_ruby:
     docker: # run the steps with Docker
       # Primary container image where all steps run.
-      - image: circleci/ruby:2.7.0
+      - image: cimg/ruby:2.7.0
     steps: # commands that comprise the `build` job
       - checkout # check out source code to working directory
       - run: gem install minitest # install minitest
