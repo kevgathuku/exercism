@@ -3,7 +3,7 @@ jobs: # basic units of work in a run
   test_clojure:
     docker: # run the steps with Docker
       # Primary container image where all steps run.
-      - image: circleci/clojure:lein-2.9.1
+      - image: cimg/clojure:1.11.1
         environment: # environment variables for primary container
           LEIN_ROOT: nbd
           JVM_OPTS: -Xmx3200m # limit the maximum heap size to prevent out of memory errors
@@ -16,7 +16,7 @@ jobs: # basic units of work in a run
   test_elixir:
     docker: # run the steps with Docker
       # Primary container image where all steps run.
-      - image: circleci/elixir:1.10.2
+      - image: cimg/elixir:1.17.2
     steps: # commands that comprise the `build` job
       - checkout # check out source code to working directory
       - run: mix local.hex --force # install Hex locally (without prompt)
@@ -38,7 +38,7 @@ jobs: # basic units of work in a run
   test_rust:
     docker: # run the steps with Docker
       # Primary container image where all steps run.
-      - image: circleci/rust:1.45.2
+      - image: cimg/rust:1.81.0
     steps: # commands that comprise the `build` job
       - checkout
       - run:
