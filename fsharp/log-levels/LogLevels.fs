@@ -1,5 +1,4 @@
 module LogLevels
-open System
 
 let message (logLine: string): string = 
   logLine.Split(':').[1].Trim()
