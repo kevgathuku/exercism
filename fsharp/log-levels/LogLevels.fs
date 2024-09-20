@@ -2,17 +2,11 @@ module LogLevels
 open System
 
 let message (logLine: string): string = 
-  let separatorIndex = logLine.IndexOf(':')
-  logLine.Substring(separatorIndex + 2).Trim()
+  logLine.Split(':').[1].Trim()
 
 let logLevel(logLine: string): string = 
-  let startIndex = logLine.IndexOf('[')
-  let endIndex = logLine.IndexOf(']')
-  logLine.Substring(startIndex + 1, (endIndex - startIndex) - 1)
-  |> String.map Char.ToLower
+  logLine.Split(':').[0].Trim([| '['; ']' |]).ToLower()
 
 
 let reformat(logLine: string): string = 
-  let parsedMessage = message logLine
-  let parsedLevel = logLevel logLine
-  $"{parsedMessage} ({parsedLevel})"
+  $"{message logLine} ({logLevel logLine})"
