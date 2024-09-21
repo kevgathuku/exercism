@@ -2,7 +2,7 @@ module Anagram
 
 
 let getFrequency (source: string) =
-  source.ToLower().ToCharArray() |> Array.sort;;
+  source.ToLower() |> Seq.sort |> Seq.toList
 
 let findAnagrams sources (target: string) = 
   sources
