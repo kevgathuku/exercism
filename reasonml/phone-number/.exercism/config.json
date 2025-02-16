@@ -1,0 +1,28 @@
+{
+  "authors": [
+    "gabrielperales"
+  ],
+  "contributors": [
+    "naartjie",
+    "ohana54",
+    "stevejb71",
+    "tejasbubane"
+  ],
+  "files": {
+    "solution": [
+      "src/PhoneNumber.re"
+    ],
+    "test": [
+      "__tests__/PhoneNumber_test.re"
+    ],
+    "example": [
+      ".meta/src/Example.re"
+    ],
+    "editor": [
+      "src/PhoneNumber.rei"
+    ]
+  },
+  "blurb": "Clean up user-entered phone numbers so that they can be sent SMS messages.",
+  "source": "Exercise by the JumpstartLab team for students at The Turing School of Software and Design.",
+  "source_url": "https://turing.edu"
+}
