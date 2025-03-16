@@ -20,7 +20,7 @@ let hamming_distance s1 s2 =
   let f acc n1 n2 = acc + strands_diff n1 n2 in
   match ((List.length s1), (List.length s2)) with
   | (0, 0) -> Ok(0)
-  | (0, x) when x > 0 -> Error "left strand must not be empty"
-  | (x, 0) when x > 0 -> Error "right strand must not be empty"
-  | (x, y) when x != y -> Error "left and right strands must be of equal length"
-  | (x, y) when x == y -> Ok(iterate_with_fold2 s1 s2 ~f ~init:0)
+  | (0, _) -> Error "left strand must not be empty"
+  | (_, 0) -> Error "right strand must not be empty"
+  | (x, y) when not (phys_equal x y) -> Error "left and right strands must be of equal length"
+  | (x, y) when phys_equal x y -> Ok(iterate_with_fold2 s1 s2 ~f ~init:0)
