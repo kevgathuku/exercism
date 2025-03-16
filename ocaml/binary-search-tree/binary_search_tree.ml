@@ -12,21 +12,23 @@ let empty: bst = Empty;;
 
 let value tree = match tree with
   | Empty -> Error "empty tree"
-  | Node {item; ltree; rtree} -> Ok item
+  | Node {item; ltree = _; rtree = _} -> Ok item
 
 let left tree = match tree with
   | Empty -> Error "empty tree"
-  | Node {item; ltree; rtree} -> Ok ltree
+  | Node {item = _; ltree; rtree = _} -> Ok ltree
 
 let right tree = match tree with
   | Empty -> Error "empty tree"
-  | Node {item; ltree; rtree} -> Ok rtree
+  | Node {item = _; ltree = _; rtree} -> Ok rtree
 
 let rec insert x tree = match tree with
   | Empty -> Node {item = x; ltree = Empty; rtree = Empty}
-  | Node {item; ltree; rtree} when x < item -> Node {item; ltree= insert x ltree; rtree}
-  | Node {item; ltree; rtree} when x > item -> Node {item; ltree; rtree = insert x rtree}
-  | Node {item; ltree; rtree} when x == item -> Node {item; ltree = insert x ltree; rtree}
+  | Node {item; ltree; rtree} ->
+    if x <= item then
+      Node {item; ltree = insert x ltree; rtree}
+    else
+      Node {item; ltree; rtree = insert x rtree}
 
 
 let rec to_list tree = match tree with
