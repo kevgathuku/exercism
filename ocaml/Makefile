@@ -3,3 +3,6 @@ init:
 
 install:
 	opam install -y dune base ocaml-lsp-server ocamlformat ounit2 utop
+
+install-ci:
+	opam install -y dune base ounit2

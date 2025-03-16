@@ -2,7 +2,7 @@
 
 set -e
 
-for path in `find . -maxdepth 1 -type d \( ! -name . \) ! -name '_*' ! -name 'list-ops'`
+for path in `find . -maxdepth 1 -type d \( ! -name . \) ! -name '_*'`
 do
   cd "$path"
   pwd && eval $(opam env) && make

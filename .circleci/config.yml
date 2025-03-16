@@ -57,7 +57,7 @@ jobs: # basic units of work in a run
             sudo apt update
             sudo apt install -y bubblewrap  # Required for opam
             opam init --disable-sandboxing --bare --yes
-            cd ocaml && make install
+            cd ocaml && make install-ci
       - run:
           name: Run OCaml tests
           command: cd ocaml && sh runtests.sh
