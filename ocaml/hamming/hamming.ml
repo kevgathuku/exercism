@@ -2,15 +2,25 @@ open Base
 
 type nucleotide = A | C | G | T
 
-let strands_diff s1 s2 =
+let iterate_with_fold2 list1 list2 ~f ~init =
+  try
+    List.fold2_exn list1 list2 ~init ~f
+  with
+  | Invalid_argument _ -> failwith "Lists must have equal length"
+
+let hamming_distance s1 s2 =
+  let strands_diff s1 s2 =
   match (s1, s2) with
   | A, A -> 0
   | C, C -> 0
   | G, G -> 0
   | T, T -> 0
   | _, _ -> 1
-
-let hamming_distance s1 s2 =
-    match List.map2 s1 s2 ~f:strands_diff with
-    | Ok results -> Ok (List.fold_left ~f:(+) ~init:0 results)
-    | Unequal_lengths -> Error "left and right strands must be of equal length"
+  in
+  let f acc n1 n2 = acc + strands_diff n1 n2 in
+  match ((List.length s1), (List.length s2)) with
+  | (0, 0) -> Ok(0)
+  | (0, x) when x > 0 -> Error "left strand must not be empty"
+  | (x, 0) when x > 0 -> Error "right strand must not be empty"
+  | (x, y) when x != y -> Error "left and right strands must be of equal length"
+  | (x, y) when x == y -> Ok(iterate_with_fold2 s1 s2 ~f ~init:0)
