@@ -1,4 +1,4 @@
-default: clean
+default: clean test
 
 test:
 	dune runtest
