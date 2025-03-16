@@ -48,7 +48,7 @@ jobs: # basic units of work in a run
   test_ocaml:
     docker:
       # Primary container image where all steps run.
-      - image: ocaml/opam:ubuntu-22.04
+      - image: ocaml/opam:ubuntu-22.04-ocaml-5.3
     steps: # commands that comprise the `build` job
       - checkout
       - run:
@@ -57,7 +57,7 @@ jobs: # basic units of work in a run
             sudo apt update
             sudo apt install -y bubblewrap  # Required for opam
             opam init --disable-sandboxing --bare --yes
-            cd ocaml && make init && make install
+            cd ocaml && make install
       - run:
           name: Run OCaml tests
           command: cd ocaml && sh runtests.sh
