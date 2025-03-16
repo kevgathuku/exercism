@@ -44,6 +44,29 @@ jobs: # basic units of work in a run
       - run:
           name: Run Rust tests
           command: cd rust && sh runtests.sh
+
+  test_ocaml:
+    docker:
+      # Primary container image where all steps run.
+      - image: ocaml/opam:ubuntu-22.04
+    steps: # commands that comprise the `build` job
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            sudo apt update
+            sudo apt install -y bubblewrap  # Required for opam
+            opam init --disable-sandboxing --bare
+            eval $(opam env)
+            cd ocaml && make init && make install
+      - run:
+          name: Build Project
+          command: |
+            eval $(opam env)
+            make
+      - run:
+          name: Run OCaml tests
+          command: cd ocaml && sh runtests.sh
 workflows:
   version: 2
   test_exercism:
@@ -52,3 +75,4 @@ workflows:
       - test_elixir
       - test_ruby
       - test_rust
+      - test_ocaml
