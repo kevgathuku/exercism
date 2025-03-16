@@ -56,14 +56,8 @@ jobs: # basic units of work in a run
           command: |
             sudo apt update
             sudo apt install -y bubblewrap  # Required for opam
-            opam init --disable-sandboxing --bare
-            eval $(opam env)
+            opam init --disable-sandboxing --bare --yes
             cd ocaml && make init && make install
-      - run:
-          name: Build Project
-          command: |
-            eval $(opam env)
-            make
       - run:
           name: Run OCaml tests
           command: cd ocaml && sh runtests.sh
