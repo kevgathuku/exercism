@@ -3,6 +3,23 @@
 Welcome to Hello World on Exercism's ReasonML Track.
 If you need help running the tests or submitting your code, check out `HELP.md`.
 
+## Setup
+
+Setup the OCaml local switch
+```sh
+make init
+```
+
+Install the opam deps
+```sh
+make install
+```
+
+Run the tests
+```sh
+make
+```
+
 ## Instructions
 
 The classical introductory exercise.
