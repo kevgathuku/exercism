@@ -2,17 +2,11 @@
  (name test)
  (libraries base ounit2))
 
-(alias
- (name runtest)
+(rule
+ (alias runtest)
  (deps
   (:x test.exe))
- (action
-  (run %{x})))
-
-(alias
- (name buildtest)
- (deps
-  (:x test.exe)))
+ (action (run %{x})))
 
 (env
  (dev
