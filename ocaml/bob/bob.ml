@@ -1,16 +1,15 @@
-open Core.Std
-open Str
+open Base
 
-let is_upper str =
-    (* The string should contain at least one uppercase character *)
-    String.equal str (String.uppercase str) && Str.string_match (Str.regexp ".*[A-Z]+") str 0
-;;
+let is_shout str =     
+    String.exists str ~f:Char.is_alpha && String.for_all str ~f:(fun c -> not (Char.is_alpha c) || Char.is_uppercase c)
 
-(* Main function that will be exported *)
+let is_question phrase =
+  String.is_suffix phrase ~suffix:"?"
+
 let response_for input =
-    let stripped_input = (String.strip input) in
-    if String.is_suffix stripped_input ~suffix:"?" = true && not (is_upper stripped_input) then "Sure."
-    else if String.is_empty stripped_input = true then "Fine. Be that way!"
-    else if is_upper stripped_input then "Whoa, chill out!"
-    else "Whatever."
-;;
+    match String.strip input with
+    | s when is_question s && is_shout s -> "Calm down, I know what I'm doing!"
+    | s when is_shout s -> "Whoa, chill out!"
+    | s when is_question s -> "Sure."
+    | s when String.is_empty s -> "Fine. Be that way!"
+    | _  -> "Whatever."
