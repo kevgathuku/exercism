@@ -1,0 +1,27 @@
+{
+  "authors": [
+    "stevejb71"
+  ],
+  "contributors": [
+    "naartjie",
+    "ohana54",
+    "tejasbubane"
+  ],
+  "files": {
+    "solution": [
+      "src/Leap.re"
+    ],
+    "test": [
+      "__tests__/Leap_test.re"
+    ],
+    "example": [
+      ".meta/src/Example.re"
+    ],
+    "editor": [
+      "src/Leap.rei"
+    ]
+  },
+  "blurb": "Determine whether a given year is a leap year.",
+  "source": "CodeRanch Cattle Drive, Assignment 3",
+  "source_url": "https://web.archive.org/web/20240907033714/https://coderanch.com/t/718816/Leap"
+}
