@@ -5,27 +5,41 @@ defmodule School do
   Each student is in a grade.
   """
 
+  @type school :: map()
+
+  @doc """
+  Create a new, empty school.
+  """
+  @spec new() :: school
+  def new(), do: %{}
+
   @doc """
   Add a student to a particular grade in school.
   """
-  @spec add(map, String.t(), integer) :: map
+  @spec add(school, String.t(), integer) :: {:ok | :error, school}
   def add(db, name, grade) do
-    Map.update(db, grade, [name], &[name | &1])
+    case Map.get(db, name) do
+      nil -> {:ok, Map.put(db, name, grade)}
+      _ -> {:error, db}
+    end
   end
 
   @doc """
   Return the names of the students in a particular grade.
   """
-  @spec grade(map, integer) :: [String.t()]
+  @spec grade(school, integer) :: [String.t()]
   def grade(db, grade) do
-    Map.get(db, grade, [])
+    db
+    |> Enum.filter(fn {_name, student_grade} -> student_grade == grade end)
+    |> Enum.map(fn {name, _} -> name end)
+    |> Enum.sort()
   end
 
   @doc """
-  Sorts the school by grade and name.
+  Return the names of all the students in the school sorted by grade and name.
   """
-  @spec sort(map) :: [{integer, [String.t()]}]
-  def sort(db) do
-    db |> Enum.map(fn {grade, students} -> {grade, Enum.sort(students)} end)
+  @spec roster(school) :: [String.t()]
+  def roster(db) do
+    db |> Enum.sort_by(fn {_, v} -> v end) |> Enum.map(fn {name, _} -> name end)
   end
 end
