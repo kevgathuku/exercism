@@ -1,12 +1,13 @@
 open Base
 
+let char_set_of_list chars = Set.of_list (module Char) chars
+
 let alphabet_set =
-  Set.of_list
-    (module Char)
+  char_set_of_list
     (List.init 26 ~f:(fun i -> Char.of_int_exn (Char.to_int 'a' + i)))
 
 let is_pangram candidate =
-  let cand_set =
-    candidate |> String.lowercase |> String.to_list |> Set.of_list (module Char)
+  let candidate_set =
+    candidate |> String.lowercase |> String.to_list |> char_set_of_list
   in
-  Set.is_subset alphabet_set ~of_:cand_set
+  Set.is_subset alphabet_set ~of_:candidate_set
