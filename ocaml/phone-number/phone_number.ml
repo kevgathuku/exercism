@@ -32,5 +32,5 @@ let number candidate =
     | 11 when Char.equal extracted_num.[0] '1' ->
         check_valid_first_digits (String.drop_prefix extracted_num 1)
     | 11 -> Error "11 digits must start with 1"
-    | x when x > 11 -> Error "more than 11 digits"
-    | _ -> Error "incorrect number of digits"
+    | x when x > 11 -> Error "must not be greater than 11 digits"
+    | _ -> Error "must not be fewer than 10 digits"
