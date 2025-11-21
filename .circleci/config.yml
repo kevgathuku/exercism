@@ -38,9 +38,10 @@ jobs: # basic units of work in a run
   test_rust:
     docker: # run the steps with Docker
       # Primary container image where all steps run.
-      - image: cimg/rust:1.81.0
+      - image: cimg/rust:1.91.0
     steps: # commands that comprise the `build` job
       - checkout
+      - run: cargo --version
       - run:
           name: Run Rust tests
           command: cd rust && sh runtests.sh
