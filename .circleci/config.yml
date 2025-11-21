@@ -30,7 +30,7 @@ jobs: # basic units of work in a run
       - image: cimg/ruby:2.7.0
     steps: # commands that comprise the `build` job
       - checkout
-      - run: gem install minitest
+      - run: gem install minitest -v 5.26.1
       - run:
           name: Run Ruby tests
           command: cd ruby && sh runtests.sh
