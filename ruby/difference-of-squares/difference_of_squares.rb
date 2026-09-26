@@ -13,7 +13,7 @@ class Squares
   end
 
   def sum_of_squares
-    (1..@num).map { |i| i * i }.sum
+    (1..@num).sum { |i| i * i }
   end
 
   def difference
